@@ -1,0 +1,62 @@
+﻿@model List<Project1.Models.User>
+
+@{
+    ViewBag.Title = "Admin Dashboard";
+}
+
+<div class="container">
+    <h2>Admin Dashboard</h2>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Mobile Number</th>
+                <th>Profile Image</th>
+                <th>Active</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var user in Model)
+            {
+                <tr>
+                    <td>@user.Username</td>
+                    <td>@user.Email</td>
+                    <td>@user.MobileNumber</td>
+                    <td>
+                        @if (!string.IsNullOrEmpty(user.ProfileImage))
+                        {
+                            <img src="@Url.Content(user.ProfileImage)" alt="Profile Image" class="img-thumbnail" style="width: 50px;" />
+                        }
+                        else
+                        {
+                            <img src="~/Images/default-image.png" alt="Default Profile Image" class="img-thumbnail" style="width: 50px;" />
+                        }
+                    </td>
+                    <td>
+                        @if (user.isActive)
+                        {
+                            <span>Yes</span>
+                        }
+                        else
+                        {
+                            <span>No</span>
+                        }
+                                    </td>
+                    <td>
+                        <a href="@Url.Action("Deactivate", "Admin", new { id = user.UserId })" class="btn btn-warning">
+                            @if(user.isActive)
+                            { 
+                                <span>Deactivate</span>
+                            }
+                            else
+                            {
+                                <span>Activate</span>
+                            }
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
