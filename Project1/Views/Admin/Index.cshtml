@@ -2,6 +2,7 @@
 
 @{
     ViewBag.Title = "Admin Dashboard";
+    ViewBag.Name = "Admin";
 }
 
 <div class="container">
@@ -24,14 +25,7 @@
                     <td>@user.Email</td>
                     <td>@user.MobileNumber</td>
                     <td>
-                        @if (!string.IsNullOrEmpty(user.ProfileImage))
-                        {
-                            <img src="@Url.Content(user.ProfileImage)" alt="Profile Image" class="img-thumbnail" style="width: 50px;" />
-                        }
-                        else
-                        {
-                            <img src="~/Images/default-image.png" alt="Default Profile Image" class="img-thumbnail" style="width: 50px;" />
-                        }
+                        <img src="@Url.Content(user.ProfileImage)" alt="Profile Image" class="img-thumbnail" style="width: 50px;" />
                     </td>
                     <td>
                         @if (user.isActive)

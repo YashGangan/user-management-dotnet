@@ -34,7 +34,8 @@
                     {
                         <li class="nav-item"><a class="nav-link" href="/home/index">Welcome @User.Identity.Name</a></li>
                         <li class="nav-item">@Html.ActionLink("Home", "Index", "Home")</li>
-                        <li class="nav-item"><a class="nav-link" href="/user/logout">Logout</a></li>
+                        <li class="nav-item">@Html.ActionLink("Edit", "EditProfile", "Home")</li>
+                        <li class="nav-item"><a class="nav-link" href="/user/logout">Logout </a></li>
                     }
                 </ul>
             </div>

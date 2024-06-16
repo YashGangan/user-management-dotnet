@@ -96,16 +96,19 @@ public class UserController : Controller
                         ModelState.Clear();
                         ModelState.AddModelError("", "Invalid login attempt.");
                     }
-
-                    // Set user session or authentication logic here
-
-                    FormsAuthentication.SetAuthCookie(user.Email, false);
-                    Session["UserId"] = user.UserId;
-                    return RedirectToAction("Index", "Home");
+                    else
+                    {
+                        FormsAuthentication.SetAuthCookie(user.Email, false);
+                        Session["UserId"] = user.UserId;
+                        return RedirectToAction("Index", "Home");
+                    }
                 }
+            else
+            {
                 ViewBag.Message = "Incorrect Credentials, Please Try Again.";
                 ModelState.Clear();
                 ModelState.AddModelError("", "Invalid login attempt.");
+            }
         }
         return View(model);
     }
