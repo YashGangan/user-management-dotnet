@@ -25,14 +25,14 @@
                         <li class="nav-item"><a class="nav-link" href="/user/register">Register</a></li>
                         <li class="nav-item"><a class="nav-link" href="/user/login">Login</a></li>
                     }
-                    @if (User.Identity.IsAuthenticated && User.Identity.Name == "admin@gmail.com")
+                    @if (User.Identity.IsAuthenticated && User.Identity.Name.Contains("admin"))
                     {
                         <li class="nav-item"><a class="nav-link" href="/admin">Welcome Admin</a></li>
                         <li class="nav-item"><a class="nav-link" href="/user/logout">Logout</a></li>
                     }
-                    @if (User.Identity.IsAuthenticated && User.Identity.Name != "admin@gmail.com")
+                    @if (User.Identity.IsAuthenticated && !User.Identity.Name.Contains("admin"))
                     {
-                        <li class="nav-item"><a class="nav-link" href="/home/index">Welcome @User.Identity.Name</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">Welcome @User.Identity.Name</a></li>
                         <li class="nav-item">@Html.ActionLink("Home", "Index", "Home")</li>
                         <li class="nav-item">@Html.ActionLink("Edit", "EditProfile", "Home")</li>
                         <li class="nav-item"><a class="nav-link" href="/user/logout">Logout </a></li>
