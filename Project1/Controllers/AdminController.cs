@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Project1.Models;
+using PagedList;
+using PagedList.Mvc;
 
 namespace Project1.Controllers
 {
@@ -12,11 +14,16 @@ namespace Project1.Controllers
     {
         Project1Entities db = new Project1Entities();
         // GET: Admin
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
             if (Session["AdminId"] != null)
             {
-                var users = db.Users.ToList();
+                int pageSize = 5; // number of users per page
+                int pageNumber = (page ?? 1); // when no page is specified 
+
+                var users = db.Users.OrderBy(u => u.UserId).ToPagedList(pageNumber, pageSize);
+                
+                // var users = db.Users.ToList();
                 return View(users);
             }
 

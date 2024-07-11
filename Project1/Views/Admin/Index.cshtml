@@ -1,4 +1,8 @@
-﻿@model List<Project1.Models.User>
+﻿@*model List<Project1.Models.User>*@
+
+@model IPagedList<Project1.Models.User>
+@using PagedList.Mvc;
+@using PagedList;
 
 @{
     ViewBag.Title = "Admin Dashboard";
@@ -36,11 +40,11 @@
                         {
                             <span>No</span>
                         }
-                                    </td>
+                    </td>
                     <td>
                         <a href="@Url.Action("Deactivate", "Admin", new { id = user.UserId })" class="btn btn-warning">
-                            @if(user.isActive)
-                            { 
+                            @if (user.isActive)
+                            {
                                 <span>Deactivate</span>
                             }
                             else
@@ -53,4 +57,7 @@
             }
         </tbody>
     </table>
+    <div class="text-center">
+        @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page }))
+    </div>
 </div>

@@ -10,7 +10,7 @@ namespace Project1.ViewModels
     public class RegisterViewModel
     {
         [Required]
-        [Phone]
+        [StringLength(13, MinimumLength = 10, ErrorMessage = "Mobile Number must be 10 digits long")]
         public string MobileNumber { get; set; }
 
         [Required]
